@@ -7,6 +7,18 @@
 
 Production-ready object detection API powered by YOLOv8 and FastAPI.
 
+## 🌐 Live Demo
+
+- **🎨 Web Interface**: [https://khanerd1.github.io/Vision-API/](https://khanerd1.github.io/Vision-API/)
+- **📡 API Endpoint**: [https://vision-api-960h.onrender.com](https://vision-api-960h.onrender.com)
+- **📚 Interactive API Docs**: [https://vision-api-960h.onrender.com/docs](https://vision-api-960h.onrender.com/docs)
+- **🏥 Health Check**: [https://vision-api-960h.onrender.com/health](https://vision-api-960h.onrender.com/health)
+
+> **⚠️ Note**: First request may take 30-60 seconds as the free tier instance spins up from sleep mode. Subsequent requests are fast!
+
+### Quick Test
+Try it now! Go to the [Web Interface](https://khanerd1.github.io/Vision-API/) and upload any image to see real-time object detection in action.
+
 ## 🚀 Features
 
 - **Real-time object detection** using YOLOv8
@@ -79,52 +91,6 @@ Visit `http://127.0.0.1:8000/docs` for interactive API documentation.
 
 Open `frontend/index.html` in your browser for a user-friendly interface.
 
-### Example with cURL
-
-**Detect objects:**
-```bash
-curl -X POST "http://127.0.0.1:8000/api/v1/detect" \
-  -H "Content-Type: multipart/form-data" \
-  -F "file=@image.jpg" \
-  -F "confidence=0.5"
-```
-
-**Get annotated image:**
-```bash
-curl -X POST "http://127.0.0.1:8000/api/v1/detect/annotated" \
-  -H "Content-Type: multipart/form-data" \
-  -F "file=@image.jpg" \
-  -o output.jpg
-```
-
-### Example with Python
-```python
-import requests
-
-url = "http://127.0.0.1:8000/api/v1/detect"
-
-with open("image.jpg", "rb") as f:
-    files = {"file": f}
-    params = {"confidence": 0.5}
-    response = requests.post(url, files=files, params=params)
-    
-detections = response.json()
-print(f"Found {detections['count']} objects")
-for det in detections['detections']:
-    print(f"- {det['class_name']}: {det['confidence']:.2f}")
-```
-
-## 🧪 Testing
-
-Run tests:
-```bash
-pytest tests/ -v
-```
-
-Run with coverage:
-```bash
-pytest tests/ --cov=app --cov-report=html
-```
 
 ## 📁 Project Structure
 ```
@@ -160,19 +126,6 @@ The model can detect 80 object classes including:
 
 See full list at `/api/v1/model/info`
 
-## 🚀 Deployment
-
-### Deploy to Render.com
-
-1. Push to GitHub
-2. Connect Render to your repository
-3. Create new Web Service
-4. Set build command: `docker build -t vision-api .`
-5. Set start command: `docker run -p 8000:8000 vision-api`
-
-### Deploy to AWS ECS
-
-See [deployment guide](docs/deployment.md) (coming soon)
 
 ## 📊 Performance
 
@@ -186,13 +139,6 @@ Adjust detection parameters:
 - `confidence`: Minimum confidence threshold (0.1-1.0)
 - `iou_threshold`: IOU threshold for NMS (0.1-1.0)
 
-## 🤝 Contributing
-
-Contributions are welcome! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
 
 ## 📝 License
 
