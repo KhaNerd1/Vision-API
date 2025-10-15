@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # Main API service
+  api:
+    build: .
+    container_name: vision-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./outputs:/app/outputs
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Nginx reverse proxy (for production)
+  # Uncomment if you want to use Nginx
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: vision-nginx
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./frontend:/usr/share/nginx/html:ro
+  #   depends_on:
+  #     - api
+  #   restart: unless-stopped
