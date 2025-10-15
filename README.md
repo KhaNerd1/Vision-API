@@ -155,10 +155,4 @@ This project is licensed under the MIT License.
 - [FastAPI](https://fastapi.tiangolo.com/)
 - COCO dataset
 
-## 📧 Contact
-
-For questions or feedback, please open an issue on GitHub.
-
----
-
 ⭐ If you find this project useful, please consider giving it a star!
